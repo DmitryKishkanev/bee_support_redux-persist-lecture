@@ -32,18 +32,34 @@
 // });
 
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import logger from 'redux-logger'; // для middleware
 import { myValueSlice } from './myValue/slice';
 import { itemsSlice } from './items/slice';
 import { userSlice } from './user/slice';
+import { clicksSlice } from './value/slice';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedClicksReducer = persistReducer(
+  persistConfig,
+  clicksSlice.reducer,
+);
 
 export const store = configureStore({
   reducer: {
     myValue: myValueSlice.reducer,
     items: itemsSlice.reducer,
     user: userSlice.reducer,
+    clicks: persistedClicksReducer,
   },
   // Сначала установить npm i -D redux-logger
   // Для логирования action в консоль
   middleware: getDefaultMiddleware => [...getDefaultMiddleware(), logger],
 });
+
+export const persistor = persistStore(store);
