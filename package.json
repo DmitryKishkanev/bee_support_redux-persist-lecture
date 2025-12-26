@@ -1,6 +1,6 @@
 {
-  "name": "bee_support---redux",
-  "homepage": "https://DmitryKishkanev.github.io/goit-react-hw-05-movies",
+  "name": "bee_support_redux-persist-lecture",
+  "homepage": "https://DmitryKishkanev.github.io/bee_support_redux-persist-lecture",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
